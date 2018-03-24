@@ -13,6 +13,8 @@ public class Main extends PApplet {
     Snake snake = new Snake(this,0,0,scale);
     //Creates a piece of Food
     Food food = new Food(this, scale);
+    //Checks if game has ended
+    boolean isGameOver = false;
 
     public static void main(String[] args){
 
@@ -34,17 +36,12 @@ public class Main extends PApplet {
 
     public void draw(){
 
-        background(0);
-
-        snake.display();
-        snake.update();
-        if(snake.isTailCollision()){
-            System.out.println("GameOver!");
+        if(isGameOver == false){
+            snakeGameScene();
         }
-
-        food.display();
-
-        snake.eat(food);
+        if(isGameOver == true){
+            gameOverScene();
+        }
 
     }
 
@@ -65,5 +62,30 @@ public class Main extends PApplet {
 
     }
 
+    //////////////////////////////////////////////////////////////////////
+
+    public void gameOverScene(){
+        background(0);
+        textSize(40);
+        text("GameOver!", 100, 150);
+    }
+
+    public void snakeGameScene(){
+
+        background(0);
+
+        snake.display();
+        snake.update();
+        if(snake.isTailCollision()){
+            isGameOver = true;
+        }
+
+        food.display();
+
+        snake.eat(food);
+
+    }
 
 }
+
+
