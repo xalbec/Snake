@@ -38,6 +38,9 @@ public class Main extends PApplet {
 
         snake.display();
         snake.update();
+        if(snake.isTailCollision()){
+            System.out.println("GameOver!");
+        }
 
         food.display();
 

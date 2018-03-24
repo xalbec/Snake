@@ -82,6 +82,17 @@ public class Snake {
 
     }
 
+    public boolean isTailCollision(){
+
+        for(PVector bod : bodies){
+            if(this.pos.equals(bod)){
+                return true;
+            }
+        }
+        return false;
+
+    }
+
     public void changeDir(char dir){
 
         switch(dir){
